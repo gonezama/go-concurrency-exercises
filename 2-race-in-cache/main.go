@@ -41,7 +41,6 @@ func New(load KeyStoreCacheLoader) *KeyStoreCache {
 	return &KeyStoreCache{
 		load:  load.Load,
 		cache: make(map[string]*list.Element),
-		// mu: &sync.Mutex{},
 	}
 }
 
