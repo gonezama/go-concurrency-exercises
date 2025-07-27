@@ -22,15 +22,21 @@ type User struct {
 // HandleRequest runs the processes requested by users. Returns false
 // if process had to be killed
 func HandleRequest(process func(), u *User) bool {
-	c1 := make(chan bool, 1)
+	if u.IsPremium {
+		process()
+		return true
+	}
+	
+	c1 := make(chan struct{}) // a channel for structs don't use memmory and by convention is just for signaling without information
+
 	go func() {
        	process()
-        c1 <- true
+        close(c1)
     }()
-	
+		
 	select {
-    case res := <-c1:
-        return res
+    case <-c1:
+        return true
     case <-time.After(10 * time.Second):
         return false
     }

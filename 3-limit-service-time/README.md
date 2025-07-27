@@ -7,3 +7,5 @@ service will kill your process, unless you are a paid premium user.
 Beginner Level: 10s max per request
 Advanced Level: 10s max per user (accumulated)
 
+## Test
+```go test -v```
