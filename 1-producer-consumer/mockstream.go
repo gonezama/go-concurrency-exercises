@@ -39,6 +39,9 @@ func (s *Stream) Next() (*Tweet, error) {
 
 	tweet := s.tweets[s.pos]
 	s.pos++
+	if s.pos == 3 {
+		time.Sleep(1020 * time.Millisecond)
+	}
 
 	return &tweet, nil
 }
@@ -76,5 +79,8 @@ var mockdata = []Tweet{
 	}, {
 		"vampirewalk666",
 		"I just wrote a golang slack bot! It reports the state of github repository. #Slack #golang",
+	}, {
+		"liomessi",
+		"Otro golangzo para Miami. #Slack #golang",
 	},
 }
